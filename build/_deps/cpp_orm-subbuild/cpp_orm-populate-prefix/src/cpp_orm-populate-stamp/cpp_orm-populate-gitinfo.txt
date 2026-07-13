@@ -1,0 +1,15 @@
+# This is a generated file and its contents are an internal implementation detail.
+# The download step will be re-executed if anything in this file changes.
+# No other meaning or use of this file is supported.
+
+method=git
+command=/usr/sbin/cmake;-DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE;-P;/home/edwin/CPPLearning/cpp_event_broker/build/_deps/cpp_orm-subbuild/cpp_orm-populate-prefix/tmp/cpp_orm-populate-gitclone.cmake
+source_dir=/home/edwin/CPPLearning/cpp_event_broker/build/_deps/cpp_orm-src
+work_dir=/home/edwin/CPPLearning/cpp_event_broker/build/_deps
+repository=https://github.com/Franco030/CPP_ORM.git
+remote=origin
+init_submodules=TRUE
+recurse_submodules=--recursive
+submodules=
+CMP0097=NEW
+      

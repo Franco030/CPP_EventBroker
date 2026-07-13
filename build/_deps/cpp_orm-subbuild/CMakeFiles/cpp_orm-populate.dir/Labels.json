@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/home/edwin/CPPLearning/cpp_event_broker/build/_deps/cpp_orm-subbuild/CMakeFiles/cpp_orm-populate"
+		},
+		{
+			"file" : "/home/edwin/CPPLearning/cpp_event_broker/build/_deps/cpp_orm-subbuild/CMakeFiles/cpp_orm-populate.rule"
+		},
+		{
+			"file" : "/home/edwin/CPPLearning/cpp_event_broker/build/_deps/cpp_orm-subbuild/CMakeFiles/cpp_orm-populate-complete.rule"
+		},
+		{
+			"file" : "/home/edwin/CPPLearning/cpp_event_broker/build/_deps/cpp_orm-subbuild/cpp_orm-populate-prefix/src/cpp_orm-populate-stamp/cpp_orm-populate-build.rule"
+		},
+		{
+			"file" : "/home/edwin/CPPLearning/cpp_event_broker/build/_deps/cpp_orm-subbuild/cpp_orm-populate-prefix/src/cpp_orm-populate-stamp/cpp_orm-populate-configure.rule"
+		},
+		{
+			"file" : "/home/edwin/CPPLearning/cpp_event_broker/build/_deps/cpp_orm-subbuild/cpp_orm-populate-prefix/src/cpp_orm-populate-stamp/cpp_orm-populate-download.rule"
+		},
+		{
+			"file" : "/home/edwin/CPPLearning/cpp_event_broker/build/_deps/cpp_orm-subbuild/cpp_orm-populate-prefix/src/cpp_orm-populate-stamp/cpp_orm-populate-install.rule"
+		},
+		{
+			"file" : "/home/edwin/CPPLearning/cpp_event_broker/build/_deps/cpp_orm-subbuild/cpp_orm-populate-prefix/src/cpp_orm-populate-stamp/cpp_orm-populate-mkdir.rule"
+		},
+		{
+			"file" : "/home/edwin/CPPLearning/cpp_event_broker/build/_deps/cpp_orm-subbuild/cpp_orm-populate-prefix/src/cpp_orm-populate-stamp/cpp_orm-populate-patch.rule"
+		},
+		{
+			"file" : "/home/edwin/CPPLearning/cpp_event_broker/build/_deps/cpp_orm-subbuild/cpp_orm-populate-prefix/src/cpp_orm-populate-stamp/cpp_orm-populate-test.rule"
+		},
+		{
+			"file" : "/home/edwin/CPPLearning/cpp_event_broker/build/_deps/cpp_orm-subbuild/cpp_orm-populate-prefix/src/cpp_orm-populate-stamp/cpp_orm-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"cpp_orm-populate"
+		],
+		"name" : "cpp_orm-populate"
+	}
+}

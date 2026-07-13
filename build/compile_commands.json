@@ -1,0 +1,44 @@
+[
+{
+  "directory": "/home/edwin/CPPLearning/cpp_event_broker/build",
+  "command": "/usr/sbin/c++  -I/home/edwin/CPPLearning/cpp_event_broker/include -I/home/edwin/CPPLearning/cpp_event_broker/build/_deps/cpp_orm-src/include -I/home/edwin/CPPLearning/cpp_event_broker/build/_deps/json-src/include -std=c++20 -o CMakeFiles/event_broker.dir/src/main.cpp.o -c /home/edwin/CPPLearning/cpp_event_broker/src/main.cpp",
+  "file": "/home/edwin/CPPLearning/cpp_event_broker/src/main.cpp",
+  "output": "CMakeFiles/event_broker.dir/src/main.cpp.o"
+},
+{
+  "directory": "/home/edwin/CPPLearning/cpp_event_broker/build",
+  "command": "/usr/sbin/c++  -I/home/edwin/CPPLearning/cpp_event_broker/include -I/home/edwin/CPPLearning/cpp_event_broker/build/_deps/cpp_orm-src/include -I/home/edwin/CPPLearning/cpp_event_broker/build/_deps/json-src/include -std=c++20 -o CMakeFiles/event_broker.dir/src/server/TcpServer.cpp.o -c /home/edwin/CPPLearning/cpp_event_broker/src/server/TcpServer.cpp",
+  "file": "/home/edwin/CPPLearning/cpp_event_broker/src/server/TcpServer.cpp",
+  "output": "CMakeFiles/event_broker.dir/src/server/TcpServer.cpp.o"
+},
+{
+  "directory": "/home/edwin/CPPLearning/cpp_event_broker/build",
+  "command": "/usr/sbin/c++   -std=c++20 -o CMakeFiles/broker_client.dir/examples/client.cpp.o -c /home/edwin/CPPLearning/cpp_event_broker/examples/client.cpp",
+  "file": "/home/edwin/CPPLearning/cpp_event_broker/examples/client.cpp",
+  "output": "CMakeFiles/broker_client.dir/examples/client.cpp.o"
+},
+{
+  "directory": "/home/edwin/CPPLearning/cpp_event_broker/build/_deps/cpp_orm-build",
+  "command": "/usr/sbin/cc  -I/home/edwin/CPPLearning/cpp_event_broker/build/_deps/cpp_orm-src/thidrd_party/sqlite -Wall -Wextra -Wpedantic -Werror -O2 -w -o CMakeFiles/sqlite3.dir/third_party/sqlite/sqlite3.c.o -c /home/edwin/CPPLearning/cpp_event_broker/build/_deps/cpp_orm-src/third_party/sqlite/sqlite3.c",
+  "file": "/home/edwin/CPPLearning/cpp_event_broker/build/_deps/cpp_orm-src/third_party/sqlite/sqlite3.c",
+  "output": "_deps/cpp_orm-build/CMakeFiles/sqlite3.dir/third_party/sqlite/sqlite3.c.o"
+},
+{
+  "directory": "/home/edwin/CPPLearning/cpp_event_broker/build/_deps/cpp_orm-build",
+  "command": "/usr/sbin/c++  -I/home/edwin/CPPLearning/cpp_event_broker/build/_deps/cpp_orm-src/include -I/home/edwin/CPPLearning/cpp_event_broker/build/_deps/cpp_orm-src/thidrd_party/sqlite -std=c++20 -Wall -Wextra -Wpedantic -Werror -O2 -o CMakeFiles/orm.dir/src/Database.cpp.o -c /home/edwin/CPPLearning/cpp_event_broker/build/_deps/cpp_orm-src/src/Database.cpp",
+  "file": "/home/edwin/CPPLearning/cpp_event_broker/build/_deps/cpp_orm-src/src/Database.cpp",
+  "output": "_deps/cpp_orm-build/CMakeFiles/orm.dir/src/Database.cpp.o"
+},
+{
+  "directory": "/home/edwin/CPPLearning/cpp_event_broker/build/_deps/cpp_orm-build",
+  "command": "/usr/sbin/c++  -I/home/edwin/CPPLearning/cpp_event_broker/build/_deps/cpp_orm-src/include -I/home/edwin/CPPLearning/cpp_event_broker/build/_deps/cpp_orm-src/thidrd_party/sqlite -std=c++20 -Wall -Wextra -Wpedantic -Werror -O2 -o CMakeFiles/orm.dir/src/Statement.cpp.o -c /home/edwin/CPPLearning/cpp_event_broker/build/_deps/cpp_orm-src/src/Statement.cpp",
+  "file": "/home/edwin/CPPLearning/cpp_event_broker/build/_deps/cpp_orm-src/src/Statement.cpp",
+  "output": "_deps/cpp_orm-build/CMakeFiles/orm.dir/src/Statement.cpp.o"
+},
+{
+  "directory": "/home/edwin/CPPLearning/cpp_event_broker/build/_deps/cpp_orm-build",
+  "command": "/usr/sbin/c++  -I/home/edwin/CPPLearning/cpp_event_broker/build/_deps/cpp_orm-src/include -std=c++20 -Wall -Wextra -Wpedantic -Werror -O2 -o CMakeFiles/orm_example.dir/examples/main.cpp.o -c /home/edwin/CPPLearning/cpp_event_broker/build/_deps/cpp_orm-src/examples/main.cpp",
+  "file": "/home/edwin/CPPLearning/cpp_event_broker/build/_deps/cpp_orm-src/examples/main.cpp",
+  "output": "_deps/cpp_orm-build/CMakeFiles/orm_example.dir/examples/main.cpp.o"
+}
+]

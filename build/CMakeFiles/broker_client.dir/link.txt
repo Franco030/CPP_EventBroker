@@ -1,0 +1,1 @@
+/usr/sbin/c++ -Wl,--dependency-file=CMakeFiles/broker_client.dir/link.d CMakeFiles/broker_client.dir/examples/client.cpp.o -o broker_client

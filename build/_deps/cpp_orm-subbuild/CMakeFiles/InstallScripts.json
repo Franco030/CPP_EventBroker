@@ -1,0 +1,7 @@
+{
+	"InstallScripts" : 
+	[
+		"/home/edwin/CPPLearning/cpp_event_broker/build/_deps/cpp_orm-subbuild/cmake_install.cmake"
+	],
+	"Parallel" : false
+}
