@@ -7,6 +7,9 @@
 #include <iostream>
 #include <nlohmann/json.hpp>
 #include <stdexcept>
+#include <atomic>
+#include <set>
+#include <sstream>
 
 #include "models/Event.hpp"
 #include <orm/Operations.hpp>
@@ -59,6 +62,12 @@ void TcpServer::start() {
 
     std::cout << "New client connected! Spawning thread..." << std::endl;
         
+    // Set a receive timeout so client threads can gracefully exit on shutdown
+    struct timeval tv;
+    tv.tv_sec = 1; // 1 second timeout
+    tv.tv_usec = 0;
+    setsockopt(client_socket, SOL_SOCKET, SO_RCVTIMEO, (const char*)&tv, sizeof tv);
+
     // Handle the client in a separate thread
     std::thread(&TcpServer::handleClient, this, client_socket).detach();
   }
@@ -66,39 +75,53 @@ void TcpServer::start() {
 
 void TcpServer::handleClient(int client_socket) {
     char buffer[4096];
-    int subscribed_topic = -1; // Keep track of subscription to clean up on disconnect
+    std::set<int> subscribed_topics; // Track all subscriptions for cleanup
+    std::string unparsed_buffer; // For TCP message framing
 
     while (running_) {
         ssize_t bytes_read = recv(client_socket, buffer, sizeof(buffer) - 1, 0);
-        if (bytes_read <= 0) {
+        if (bytes_read < 0) {
+            if (errno == EAGAIN || errno == EWOULDBLOCK) {
+                continue; // Timeout reached, loop back to check running_
+            }
+            std::cout << "Client connection error." << std::endl;
+            break; 
+        } else if (bytes_read == 0) {
             std::cout << "Client disconnected." << std::endl;
-            break; // Connection closed or error
+            break; // Connection closed
         }
         
         // Null-terminate the string safely
         buffer[bytes_read] = '\0';
-        std::string raw_message(buffer);
+        unparsed_buffer += buffer;
         
-        std::cout << "Received raw bytes: " << raw_message << std::endl;
+        // TCP Framing: parse messages delimited by '\n'
+        size_t pos = 0;
+        while ((pos = unparsed_buffer.find('\n')) != std::string::npos) {
+            std::string raw_message = unparsed_buffer.substr(0, pos);
+            unparsed_buffer.erase(0, pos + 1);
+            
+            std::cout << "Received framed message: " << raw_message << std::endl;
 
-        try {
+            try {
             auto j = nlohmann::json::parse(raw_message);
             std::string type = j.value("type", "publish"); // Default to publish if not specified
 
             if (type == "subscribe") {
-                subscribed_topic = j.value("topic_id", 0);
+                int topic = j.value("topic_id", 0);
                 
                 std::lock_guard<std::mutex> lock(subscribers_mutex_);
-                topic_subscribers_[subscribed_topic].push_back(client_socket);
+                topic_subscribers_[topic].push_back(client_socket);
+                subscribed_topics.insert(topic);
                 
-                std::cout << "Client subscribed to topic " << subscribed_topic << std::endl;
+                std::cout << "Client subscribed to topic " << topic << std::endl;
                 std::string ack = "{\"status\": \"subscribed\"}\n";
                 send(client_socket, ack.c_str(), ack.length(), 0);
             } 
             else if (type == "publish") {
                 // Create and populate the Event object
                 broker::models::Event event;
-                static int next_id = 1;
+                static std::atomic<int> next_id{1};
                 event.id = j.value("id", next_id++);
                 event.topic_id = j.value("topic_id", 0);
                 event.payload = j.value("payload", "");
@@ -122,23 +145,26 @@ void TcpServer::handleClient(int client_socket) {
                     }
                 }
             }
-        } catch (const std::exception& e) {
-            std::cerr << "Error parsing/saving event: " << e.what() << std::endl;
-            std::string err = "{\"status\": \"error\", \"message\": \"invalid data\"}\n";
-            send(client_socket, err.c_str(), err.length(), 0);
-        }
+            } catch (const std::exception& e) {
+                std::cerr << "Error parsing/saving event: " << e.what() << std::endl;
+                std::string err = "{\"status\": \"error\", \"message\": \"invalid data\"}\n";
+                send(client_socket, err.c_str(), err.length(), 0);
+            }
+        } // End of message framing loop
     }
     
     // Cleanup on disconnect
-    if (subscribed_topic != -1) {
+    {
         std::lock_guard<std::mutex> lock(subscribers_mutex_);
-        auto& subs = topic_subscribers_[subscribed_topic];
-        // Remove this client's socket from the subscriber list
-        for (auto it = subs.begin(); it != subs.end(); ) {
-            if (*it == client_socket) {
-                it = subs.erase(it);
-            } else {
-                ++it;
+        for (int topic : subscribed_topics) {
+            auto& subs = topic_subscribers_[topic];
+            // Remove this client's socket from the subscriber list
+            for (auto it = subs.begin(); it != subs.end(); ) {
+                if (*it == client_socket) {
+                    it = subs.erase(it);
+                } else {
+                    ++it;
+                }
             }
         }
     }
